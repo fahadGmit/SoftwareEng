@@ -1,0 +1,54 @@
+A Java based Offline GIFT editor
+Paul Dunne
+version 1, November 2012
+Overview
+GIFT
+The GIFT file format is desribed in Wikipedia:
+"The GIFT format allows someone to use a text editor to write multiple-choice, true-false, short answer, matching, missing word and numerical questions in a simple format that can be imported to a computer-based quizzes. It’s used in Moodle"
+Moodle itself contains a simple editor to create moodle quizes. However, questions can only be added and modified online.
+The formatting required for a GIFT question can be challenging to write (correctly). The following list outlines the types of questions that can be written in the GIFT format:
+Types of Questions
+True/False
+Multiple Choice
+Fill in the blank
+Matching
+Math range question
+Math Range specified with interval end points
+Multiple numeric answers with partial credit and feedback
+Essay
+Syntax
+The syntax, relatively straight forward in most regards, presents difficulties to people because its relatively diffilcult to spot syntax errors. Here are some examples:
+Example 1
+// true/false
+::Q1:: 1+1=2 {T}
+Example 2
+// multiple choice with specified feedback for right and wrong answers
+::Q2::What's between orange and green in the spectrum?
+{ =yellow # right; good! ~red # wrong, it's yellow ~blue # wrong, it's yellow }
+Example 3
+// multiple numeric answers with partial credit and feedback
+::Q7:: When was Ulysses S. Grant born? {#
+         =1822:0      # Correct! Full credit.
+         =%50%1822:2  # He was born in 1822. Half credit for being close.
+}
+Details on this formatting can be read here: Moodles own Gift File Format documentation.The following website also has some information: Alterntive information
+Offline Editing
+Currently there are a very limited amount of editors for the GIFT format. The following are available.
+Moodle Quiz Editor (Java Based) hosted on github (Not working/ Incomplete)
+pdunne@HP-LAP /C/Users/pdunne/Desktop/MoodleGiftEditor
+$ git clone https://github.com/samithdisal/Moodle-Quiz-Editor.git
+Cloning into 'Moodle-Quiz-Editor'...
+remote: Counting objects: 498, done.
+remote: Compressing objects: 100% (398/398), done.
+remote: Total 498 (delta 58), reused 498 (delta 58) eceiving objects:  78% (389
+498), 764.00
+Receiving objects: 100% (498/498), 898.76 KiB | 335 KiB/s, done.
+Resolving deltas: 100% (58/58), done.
+pdunne@HP-LAP /C/Users/pdunne/Desktop/MoodleGiftEditor
+Project Requirements
+Using the Java programming language, an gift editor must be designed, and built, that allows a user to carry out certain tasks. The tasks are outlined here:
+Tasks
+Create individual questions (true/false, multiple choice etc)
+Build a series of questions of a particular type. (e.g. 10 multiple-choice questions)
+Save (or append) the questions to a new (existing) text file.
+Some time must be spent of the design of the GUI. Included in the project folder are some screenshots of a prototype GUI for the assignment (with screen shots for True/False,Multiple Choice and Matching questions ).
