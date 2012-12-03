@@ -23,9 +23,8 @@ import javax.swing.border.TitledBorder;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.io.IOException;
 
-public class Gui {
+public class Tttt {
 
 	private JFrame frame;
 	private JTextField textField;
@@ -36,8 +35,7 @@ public class Gui {
 	private JTextField choiseTextFilde4;
 	static JButton btnAddAnpther;
 	static JTextPane textPane;
-	String question;
-
+	RadioButtonHandler handler;
 	
 	
 
@@ -60,29 +58,12 @@ public class Gui {
 	/**
 	 * Create the application.
 	 */
-	public Gui() {
+	public Tttt() {
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					initialize();
-					btnAddAnpther.addActionListener(new ActionListener() {
-						
-						@Override
-						public void actionPerformed(ActionEvent arg0) {
-							
-							
-							question = textPane.getText();
-							try {
-								new FileManger().Writetofile(question);
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-							
-						}
-					});
-
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -133,13 +114,10 @@ public class Gui {
 		panel.add(textPane, "cell 2 1 3 1,grow");
 		
 		////////////////////////////////////////////////////////////RadioButtonGroup
-		
+		RadioButtonHandler handler = new RadioButtonHandler();
 		
 		JRadioButton rdbtnTrue = new JRadioButton("True");
 		JRadioButton rdbtnFalse = new JRadioButton("Fales");
-//		rdbtnFalse.setActionCommand(actionCommand)
-		rdbtnFalse.addActionListener(new myAction());
-		rdbtnTrue.addActionListener(new myAction());
 		
 		JPanel radioPanelGroup = new JPanel();
 		
@@ -162,9 +140,6 @@ public class Gui {
 		
 		
 		
-		
-			
-					
 		
 		
 		
@@ -247,13 +222,6 @@ public class Gui {
 		
 		JPanel panel_5 = new JPanel();
 		tabbedPane.addTab("New tab", null, panel_5, null);
-	}
-
-	public class myAction implements ActionListener{
-		public void actionPerformed(ActionEvent e){
-			JOptionPane.showMessageDialog(null, "This the " + e.getActionCommand());
-		}
-		
 	}
 
 }

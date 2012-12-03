@@ -1,5 +1,7 @@
 package editor;
 
+import javax.swing.JRadioButtonMenuItem;
+
 public class Main {
 
 	/**
@@ -7,6 +9,10 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		new Gui();
+//		new TrueFalseQ();
+		new FileManger().NewFile();
+		
 
 	}
 
