@@ -37,6 +37,8 @@ public class Gui {
 	static JButton btnAddAnpther;
 	static JTextPane textPane;
 	String question;
+	private JTextField textField_1;
+	private JTextField textField_2;
 
 	
 	
@@ -44,18 +46,7 @@ public class Gui {
 	/**
 	 * Launch the application.
 	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					Gui window = new Gui();
-//					window.frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+
 
 	/**
 	 * Create the application.
@@ -66,23 +57,6 @@ public class Gui {
 			public void run() {
 				try {
 					initialize();
-					btnAddAnpther.addActionListener(new ActionListener() {
-						
-						@Override
-						public void actionPerformed(ActionEvent arg0) {
-							
-							
-							question = textPane.getText();
-							try {
-								new FileManger().Writetofile(question);
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-							
-						}
-					});
-
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -101,16 +75,6 @@ public class Gui {
 		frame.setBounds(100, 100, 966, 588);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new MigLayout("", "[grow]", "[][grow]"));
-		
-		JButton btnNew = new JButton("New Text File");
-		btnNew.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		frame.getContentPane().add(btnNew, "flowx,cell 0 0");
-		
-		JButton btnClose = new JButton("Close");
-		frame.getContentPane().add(btnClose, "cell 0 0");
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		frame.getContentPane().add(tabbedPane, "cell 0 1,grow");
@@ -238,6 +202,33 @@ public class Gui {
 		
 		JPanel panel_2 = new JPanel();
 		tabbedPane.addTab("New tab", null, panel_2, null);
+		panel_2.setLayout(new MigLayout("", "[][grow][]", "[][grow][][grow][][][][][][]"));
+		
+		JLabel lblNewLabel = new JLabel("Question Title (optional)");
+		panel_2.add(lblNewLabel, "cell 0 0,alignx trailing");
+		
+		textField_1 = new JTextField();
+		panel_2.add(textField_1, "cell 1 0,growx");
+		textField_1.setColumns(10);
+		
+		JLabel lblQuestion_2 = new JLabel("Question");
+		panel_2.add(lblQuestion_2, "cell 0 1");
+		
+		JTextPane textPane_1 = new JTextPane();
+		panel_2.add(textPane_1, "cell 1 1,grow");
+		
+		JLabel lblChoies = new JLabel("Choies");
+		panel_2.add(lblChoies, "cell 1 2");
+		
+		JLabel lblA = new JLabel("A");
+		panel_2.add(lblA, "flowx,cell 1 3");
+		
+		textField_2 = new JTextField();
+		panel_2.add(textField_2, "split ,cell 1 3");
+		textField_2.setColumns(10);
+		
+		JLabel label = new JLabel("");
+		panel_2.add(label, "cell 1 3");
 		
 		JPanel panel_3 = new JPanel();
 		tabbedPane.addTab("New tab", null, panel_3, null);
