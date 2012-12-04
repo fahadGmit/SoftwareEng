@@ -104,7 +104,7 @@ public class Multiiple {
 				String mark2 = spinner_1.getValue().toString();
 				String mark3 = spinner_2.getValue().toString();
 				String mark4 = spinner_3.getValue().toString();
-				setzero(mark1);
+
 				
 
 				try {
@@ -116,6 +116,23 @@ public class Multiiple {
 							setzero(mark3) + "%"+ choise3+ "\n~%" + 
 							setzero(mark4) + "%"+ choise4+"\n}" + "\n");
 					out.close();
+					
+					
+					questionTitle_multi.setText("");
+					question_mulit.setText("");
+					
+					choiseTextFilde1.setText("");
+					choiseTextFilde2.setText("");
+					choiseTextFilde3.setText("");
+					choiseTextFilde4.setText("");
+					
+					
+					spinner.setValue(0);
+					spinner_1.setValue(0);
+					spinner_2.setValue(0);
+					spinner_3.setValue(0);
+					
+					
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -124,11 +141,13 @@ public class Multiiple {
 			}
 
 			private String setzero(String mark) {
-				if(mark=="0"){
+				if(mark.compareTo("0")==0){
 					mark = "-100";
-				}
+					return mark;
+				}else
+					return mark;
 				
-				return mark;
+				
 			}
 		});
 		

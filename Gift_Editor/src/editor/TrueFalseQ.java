@@ -96,7 +96,7 @@ public class TrueFalseQ {
 				try {
 					out = new PrintWriter(new BufferedWriter(new FileWriter(
 							"ExamQ.txt", true)));
-					out.write("");
+					
 					out.append("::" + qusetionTitle + "::" + qusetionQ + "{"
 							+ answer + "}" + "\n");
 					out.close();

@@ -39,6 +39,7 @@ public class Gui {
 	String question;
 	private JTextField textField_1;
 	private JTextField textField_2;
+	private JTextField textField_3;
 
 	
 	
@@ -141,65 +142,6 @@ public class Gui {
 		btnAddAnpther = new JButton("Add another True/False Question"); //True
 		panel.add(btnAddAnpther, "cell 0 4 3 1,alignx left,aligny top");
 		
-		
-		
-		JPanel panel_1 = new JPanel();
-		tabbedPane.addTab("Multiiple Choice", null, panel_1, null);
-		panel_1.setLayout(new MigLayout("", "[][grow]", "[][grow][][][][][][][][]"));
-		
-		JLabel lblQuestionTitleoptional_1 = new JLabel("Question Title (optional)");
-		panel_1.add(lblQuestionTitleoptional_1, "cell 0 0,alignx right");
-		
-		questionTitle_multi = new JTextField();
-		panel_1.add(questionTitle_multi, "cell 1 0,growx");
-		questionTitle_multi.setColumns(10);
-		
-		JLabel lblQuestion_1 = new JLabel("Question");
-		panel_1.add(lblQuestion_1, "cell 0 1,alignx right,aligny top");
-		
-		JTextPane question_mulit = new JTextPane();
-		panel_1.add(question_mulit, "cell 1 1,grow");
-		
-		JButton btnCancelclearQuestionText_1 = new JButton("Cancel/Clear Question Text");
-		panel_1.add(btnCancelclearQuestionText_1, "cell 1 2,alignx right");
-		
-		JButton btnAddAnswer = new JButton("Add Answer");
-		panel_1.add(btnAddAnswer, "cell 0 3,alignx left");
-		
-		choiseTextFilde1 = new JTextField();
-		panel_1.add(choiseTextFilde1, "flowx,cell 1 3,growx");
-		choiseTextFilde1.setColumns(10);
-		
-		JSpinner spinner = new JSpinner();
-		panel_1.add(spinner, "cell 1 3");
-		
-		choiseTextFilde2 = new JTextField();
-		panel_1.add(choiseTextFilde2, "flowx,cell 1 4,growx");
-		choiseTextFilde2.setColumns(10);
-		
-		JSpinner spinner_1 = new JSpinner();
-		panel_1.add(spinner_1, "cell 1 4");
-		
-		choiseTextFilde3 = new JTextField();
-		panel_1.add(choiseTextFilde3, "flowx,cell 1 5,growx");
-		choiseTextFilde3.setColumns(10);
-		
-		JSpinner spinner_2 = new JSpinner();
-		panel_1.add(spinner_2, "cell 1 5");
-		
-		choiseTextFilde4 = new JTextField();
-		panel_1.add(choiseTextFilde4, "flowx,cell 1 6,growx");
-		choiseTextFilde4.setColumns(10);
-		
-		JSpinner spinner_3 = new JSpinner();
-		panel_1.add(spinner_3, "cell 1 6");
-		
-		JButton btnSaveToTest_1 = new JButton("Save to test file");
-		panel_1.add(btnSaveToTest_1, "cell 0 7");
-		
-		JButton btnAddAnotherMultiple = new JButton("Add Another Multiple Choice");	//Multi
-		panel_1.add(btnAddAnotherMultiple, "cell 0 9 2097051 1");
-		
 		JPanel panel_2 = new JPanel();
 		tabbedPane.addTab("New tab", null, panel_2, null);
 		panel_2.setLayout(new MigLayout("", "[][grow][]", "[][grow][][grow][][][][][][]"));
@@ -238,6 +180,72 @@ public class Gui {
 		
 		JPanel panel_5 = new JPanel();
 		tabbedPane.addTab("New tab", null, panel_5, null);
+		
+		
+		
+		JPanel panel_1 = new JPanel();
+		tabbedPane.addTab("Multiiple Choice", null, panel_1, null);
+		panel_1.setLayout(new MigLayout("", "[][590.00,grow][pref,grow]", "[][grow][][][][][][][][][]"));
+		
+		JLabel lblQuestionTitleoptional_1 = new JLabel("Question Title (optional)");
+		panel_1.add(lblQuestionTitleoptional_1, "cell 0 0,alignx right");
+		
+		questionTitle_multi = new JTextField();
+		panel_1.add(questionTitle_multi, "cell 1 0,growx");
+		questionTitle_multi.setColumns(10);
+		
+		JLabel lblQuestion_1 = new JLabel("Question");
+		panel_1.add(lblQuestion_1, "cell 0 1,alignx right,aligny top");
+		
+		JTextPane question_mulit = new JTextPane();
+		panel_1.add(question_mulit, "cell 1 1,grow");
+		
+		JButton btnCancelclearQuestionText_1 = new JButton("Cancel/Clear Question Text");
+		panel_1.add(btnCancelclearQuestionText_1, "cell 1 2,alignx right");
+		
+		JButton btnAddAnswer = new JButton("Add Answer");
+		panel_1.add(btnAddAnswer, "cell 0 3,alignx left");
+		
+		choiseTextFilde1 = new JTextField();
+		panel_1.add(choiseTextFilde1, "flowx,cell 1 3,growx");
+		choiseTextFilde1.setColumns(10);
+		
+		JSpinner spinner = new JSpinner();
+		panel_1.add(spinner, "cell 2 3,growx");
+		
+		choiseTextFilde2 = new JTextField();
+		panel_1.add(choiseTextFilde2, "flowx,cell 1 4,growx");
+		choiseTextFilde2.setColumns(10);
+		
+		JSpinner spinner_1 = new JSpinner();
+		panel_1.add(spinner_1, "cell 2 4,growx");
+		
+		choiseTextFilde3 = new JTextField();
+		panel_1.add(choiseTextFilde3, "flowx,cell 1 5,growx");
+		choiseTextFilde3.setColumns(10);
+		
+		JSpinner spinner_2 = new JSpinner();
+		panel_1.add(spinner_2, "cell 2 5,growx");
+		
+		choiseTextFilde4 = new JTextField();
+		panel_1.add(choiseTextFilde4, "flowx,cell 1 6,growx");
+		choiseTextFilde4.setColumns(10);
+		
+		JSpinner spinner_3 = new JSpinner();
+		panel_1.add(spinner_3, "cell 2 6,growx");
+		
+		JButton btnSaveToTest_1 = new JButton("Save to test file");
+		panel_1.add(btnSaveToTest_1, "cell 0 7");
+		
+		textField_3 = new JTextField();
+		panel_1.add(textField_3, "flowx,cell 1 7,growx");
+		textField_3.setColumns(10);
+		
+		JSpinner spinner_4 = new JSpinner();
+		panel_1.add(spinner_4, "cell 2 7,growx");
+		
+		JButton btnAddAnotherMultiple = new JButton("Add Another Multiple Choice");	//Multi
+		panel_1.add(btnAddAnotherMultiple, "cell 0 9 2 1");
 	}
 
 	public class myAction implements ActionListener{
