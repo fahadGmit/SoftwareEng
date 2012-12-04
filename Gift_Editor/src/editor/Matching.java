@@ -17,7 +17,7 @@ import javax.swing.JTextPane;
 
 import net.miginfocom.swing.MigLayout;
 
-public class Matching {
+public class Matching extends JPanel{
 	private JTextField tfTitle;
 	private JTextPane jtpQ;
 	private JTextField jtfAq;
@@ -31,55 +31,50 @@ public class Matching {
 
 	public Matching() {
 
-		frame = new JFrame();
-		frame.setBounds(100, 100, 966, 588);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		JPanel panel_2 = new JPanel();
-		// tabbedPane.addTab("Matching", null, panel_2, null);
-		panel_2.setLayout(new MigLayout("",
+		
+		setLayout(new MigLayout("",
 				"[172.00][-18.00][grow,fill][][][][149.00,grow,fill][]",
 				"[][grow][][][][][][][][][][][][]"));
 
 		JLabel lblNewLabel_4 = new JLabel("Question Title (optional)");
-		panel_2.add(lblNewLabel_4, "cell 0 0,alignx right");
+		add(lblNewLabel_4, "cell 0 0,alignx right");
 		JLabel lblQ = new JLabel("Question");
-		panel_2.add(lblQ, "cell 0 1,alignx right ,top");
+		add(lblQ, "cell 0 1,alignx right ,top");
 		JLabel lblA_1 = new JLabel("A");
-		panel_2.add(lblA_1, "cell 1 3,alignx trailing");
+		add(lblA_1, "cell 1 3,alignx trailing");
 		JLabel lblNewLabel_5 = new JLabel("A");
-		panel_2.add(lblNewLabel_5, "cell 4 3");
+		add(lblNewLabel_5, "cell 4 3");
 		JLabel lblNewLabel_6 = new JLabel("B");
-		panel_2.add(lblNewLabel_6, "cell 1 5,alignx trailing");
+		add(lblNewLabel_6, "cell 1 5,alignx trailing");
 		JLabel lblB = new JLabel("B");
-		panel_2.add(lblB, "cell 4 5");
+		add(lblB, "cell 4 5");
 		JLabel lblC = new JLabel("C");
-		panel_2.add(lblC, "cell 1 7,alignx trailing");
+		add(lblC, "cell 1 7,alignx trailing");
 		JLabel lblC_1 = new JLabel("C");
-		panel_2.add(lblC_1, "cell 4 7");
+		add(lblC_1, "cell 4 7");
 
 		tfTitle = new JTextField();
-		panel_2.add(tfTitle, "cell 2 0,growx,span");
+		add(tfTitle, "cell 2 0,growx,span");
 		tfTitle.setColumns(10);
 		jtpQ = new JTextPane();
-		panel_2.add(jtpQ, "cell 2 1,span,grow");
+		add(jtpQ, "cell 2 1,span,grow");
 		jtfAq = new JTextField();
-		panel_2.add(jtfAq, "cell 2 3,alignx left");
+		add(jtfAq, "cell 2 3,alignx left");
 		jtfAq.setColumns(10);
 		jtfAn = new JTextField();
-		panel_2.add(jtfAn, "cell 6 3,growx");
+		add(jtfAn, "cell 6 3,growx");
 		jtfAn.setColumns(10);
 		jtfBq = new JTextField();
-		panel_2.add(jtfBq, "cell 2 5,growx");
+		add(jtfBq, "cell 2 5,growx");
 		jtfBq.setColumns(10);
 		jtfBn = new JTextField();
-		panel_2.add(jtfBn, "cell 6 5,growx");
+		add(jtfBn, "cell 6 5,growx");
 		jtfBn.setColumns(10);
 		jtfCq = new JTextField();
-		panel_2.add(jtfCq, "cell 2 7,growx");
+		add(jtfCq, "cell 2 7,growx");
 		jtfCq.setColumns(10);
 		jtfCn = new JTextField();
-		panel_2.add(jtfCn, "cell 6 7,growx");
+		add(jtfCn, "cell 6 7,growx");
 		jtfCn.setColumns(10);
 
 		// JButton btnNewButton_3 = new JButton("Add Q&A");
@@ -90,7 +85,7 @@ public class Matching {
 		// panel_2.add(btnSaveToTest, "cell 0 10");
 		JButton btnAddAnother = new JButton(
 				"Save and Add another Matching Question");
-		panel_2.add(btnAddAnother, "cell 0 13 3 1,alignx center,span");
+		add(btnAddAnother, "cell 0 13 3 1,alignx center,span");
 
 		// JCheckBox chckbxDelete_1 = new JCheckBox("Delete");
 		// panel_2.add(chckbxDelete_1, "cell 7 2");
@@ -139,9 +134,6 @@ public class Matching {
 
 			}
 		});
-
-		frame.add(panel_2);
-		frame.setVisible(true);
 
 	}
 
