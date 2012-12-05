@@ -1,0 +1,90 @@
+package editor;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import java.awt.FlowLayout;
+import java.awt.CardLayout;
+import javax.swing.JTabbedPane;
+import javax.swing.JPanel;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.JButton;
+import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JRadioButton;
+
+public class Gift_Gui {
+
+	private JFrame frame;
+	private JTextField textField;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Gift_Gui window = new Gift_Gui();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Gift_Gui() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 819, 500);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(new CardLayout(0, 0));
+		
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		frame.getContentPane().add(tabbedPane, "name_1354470152100242000");
+		
+		JPanel panel = new JPanel();
+		tabbedPane.addTab("True-False", null, panel, null);
+		panel.setLayout(new MigLayout("", "[100px,right][][grow][][]", "[][100px,grow,top][grow][][][][]"));
+		
+		JLabel lblQuestionTitleoptional = new JLabel("Question Title (optional)");
+		panel.add(lblQuestionTitleoptional, "cell 0 0");
+		
+		textField = new JTextField();
+		panel.add(textField, "cell 2 0 2097051 1,growx");
+		textField.setColumns(10);
+		
+		JLabel lblQuestion = new JLabel("Question");
+		panel.add(lblQuestion, "cell 0 1,aligny top");
+		
+		JTextPane textPane = new JTextPane();
+		panel.add(textPane, "cell 2 1 2097051 1,grow");
+		
+		JButton btnSaveToTest = new JButton("Save To test file");
+		panel.add(btnSaveToTest, "cell 0 2,alignx left");
+		
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("New radio button");
+		panel.add(rdbtnNewRadioButton, "flowx,cell 2 2,alignx center");
+		
+//		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("New radio button");
+//		panel.add(rdbtnNewRadioButton_1, "cell 2 2,alignx center,aligny center");
+		
+		JButton btnCancelclearQuestionText = new JButton("Cancel/Clear Question Text");
+		panel.add(btnCancelclearQuestionText, "cell 4 2,alignx right,aligny top");
+		
+		JButton btnAddAnpther = new JButton("Add another True/False Question");
+		panel.add(btnAddAnpther, "cell 0 5 2097051 1,alignx left");
+	}
+}

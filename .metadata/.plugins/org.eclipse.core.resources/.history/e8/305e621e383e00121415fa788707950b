@@ -1,0 +1,65 @@
+package editor;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+
+public class gggg {
+
+	private JFrame frame;
+	private JTextField txtTitle;
+	private JTextPane txtpnQuestion;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					gggg window = new gggg();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public gggg() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 899, 530);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(new MigLayout("", "[][grow][]", "[][grow][][][][][][][]"));
+		
+		JLabel lblQuestionTitleoptional = new JLabel("Question Title (optional)");
+		frame.getContentPane().add(lblQuestionTitleoptional, "cell 0 0,alignx right,aligny center,gapright 10");
+		
+		txtTitle = new JTextField();
+		txtTitle.setText("title");
+		frame.getContentPane().add(txtTitle, "cell 1 0,growx");
+		txtTitle.setColumns(10);
+		
+		JLabel lblQuestion = new JLabel("Question");
+		frame.getContentPane().add(lblQuestion, "cell 0 1,alignx trailing,aligny top,gapright 10");
+		
+		txtpnQuestion = new JTextPane();
+		txtpnQuestion.setText("question");
+		frame.getContentPane().add(txtpnQuestion, "cell 1 1 2097051 1,grow");
+	}
+
+}

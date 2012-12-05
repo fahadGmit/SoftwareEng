@@ -1,0 +1,40 @@
+package editor;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+
+public class Main {
+	public static File file;
+
+	/**
+	 * @param args
+	 * @throws IOException 
+	 */
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		// new Gui();
+		new TrueFalseQ();
+		NewFile();
+
+	}
+
+	public static void NewFile() {
+		file = new File("ExamQ.txt");
+
+	}
+
+//	public void Writetofile(String textwrite) throws IOException {
+//
+//		FileWriter fw = new FileWriter(file);
+//		BufferedWriter bw = new BufferedWriter(fw);
+//		bw.append(textwrite);
+//		bw.close();
+//
+//		System.out.println("Done");
+//
+//	}
+
+}

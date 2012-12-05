@@ -26,7 +26,6 @@ public class Matching extends JPanel{
 	private JTextField jtfBn;
 	private JTextField jtfCq;
 	private JTextField jtfCn;
-	private JFrame frame;
 	public static PrintWriter out;
 
 	public Matching() {

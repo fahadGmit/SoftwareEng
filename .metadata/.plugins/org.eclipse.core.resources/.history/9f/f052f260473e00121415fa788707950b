@@ -1,0 +1,28 @@
+package editor;
+
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
+public class JTabbedPane extends JPanel {
+
+	  public void init() {
+	    try {
+	      SwingUtilities.invokeAndWait(new Runnable() {
+	        public void run() {
+	          makeGUI();
+	        }
+	      });
+	    } catch (Exception exc) {
+	      System.out.println("Can't create because of " + exc);
+	    }
+	  }
+
+	  private void makeGUI() {
+
+	    JTabbedPane jtp = new JTabbedPane();
+//	    jtp.addTab("Matching", new Matching());
+//	    jtp.addTab("True-False", new TrueFalseQ());
+	    jtp.addTab("Multiiple Choiese", new Multiiple());
+	    add(jtp);
+	  }
+	}

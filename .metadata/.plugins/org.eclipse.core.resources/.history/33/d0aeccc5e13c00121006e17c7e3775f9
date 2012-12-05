@@ -1,0 +1,25 @@
+package editor;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import editor.Gui;
+
+public class TrueFalseQ {
+	String question;
+	Boolean answer;
+	public TrueFalseQ(){
+		
+		Gui.btnAddAnpther.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				question = Gui.
+				
+			}
+		});
+		
+	}
+	
+	
+}
