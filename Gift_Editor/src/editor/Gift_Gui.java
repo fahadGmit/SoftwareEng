@@ -2,8 +2,15 @@ package editor;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
+import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 import javax.swing.AbstractAction;
@@ -11,8 +18,11 @@ import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextPane;
 import javax.swing.JToolBar;
+import javax.swing.plaf.SliderUI;
 
 public class Gift_Gui {
 
@@ -21,7 +31,7 @@ public class Gift_Gui {
 	static File selctedFile, afile;
 	static String content, filePath;
 	private JToolBar toolBar;
-	private Action newAction, exitAction;
+	private Action newAction, exitAction,previewAction;
 	static PrintWriter out;
 	static JFrame f;
 
@@ -31,12 +41,12 @@ public class Gift_Gui {
 
 	private void initialize() {
 		toolBar = new JToolBar(null, JToolBar.VERTICAL);
-
+		previewAction = new QuickLook();
 		newAction = new NewAction();
 		exitAction = new ExitAction();
 
 		f = new JFrame("Gift Editor");
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		JTabbedPane jtp = new JTabbedPane();
 		jtp.addTab("Multiiple Choiese", new MultipleChoice());
 		jtp.addTab("Short Answer", new Shortanswer());
@@ -46,7 +56,10 @@ public class Gift_Gui {
 		jtp.addTab("Numerical", new Numerical());
 
 		toolBar.add(newAction);
+		toolBar.add(previewAction);
+		toolBar.addSeparator();
 		toolBar.add(exitAction);
+		
 
 		f.add(jtp, BorderLayout.CENTER);
 		f.add(toolBar, BorderLayout.WEST);
@@ -94,6 +107,95 @@ public class Gift_Gui {
 
 			System.exit(0);
 		}
+	}
+	
+	class QuickLook extends AbstractAction{
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		public QuickLook() {
+			putValue(NAME, "PreView");
+			putValue(SMALL_ICON, new ImageIcon(("images/Quick_look.png")));
+			putValue(SHORT_DESCRIPTION, "Preview File");
+			putValue(MNEMONIC_KEY, new Integer('Q'));
+		}{
+			
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			JFrame q = new JFrame("Qucik Look");
+			JTextPane ql = new JTextPane();
+			
+			
+//			BufferedReader br = null;
+//			try {
+//				br = new BufferedReader(new FileReader(selctedFile));
+//			} catch (FileNotFoundException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			
+//			try {
+//		        
+//		        String line = br.readLine();
+//
+//		        while (line != null) {
+//		            ql.setText(line.toString());
+//		            ql.setText("\n");
+//		            line = br.readLine();
+//		        }
+//		       
+//		    } catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			} finally {
+//		        try {
+//					br.close();
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//		    }
+			StringBuilder sb = new StringBuilder();
+			
+			try{
+				  // Open the file that is the first 
+				  // command line parameter
+				  FileInputStream fstream = new FileInputStream(selctedFile);
+				  // Get the object of DataInputStream
+				  DataInputStream in = new DataInputStream(fstream);
+				  BufferedReader br = new BufferedReader(new InputStreamReader(in));
+				  String strLine;
+				  //Read File Line By Line
+				  while ((strLine = br.readLine()) != null)   {
+				  // Print the content on the console
+				  sb.append(strLine);
+				  sb.append("\n");
+				  }
+				  ql.setText(sb.toString());
+				  //Close the input stream
+				  in.close();
+				    }catch (Exception e){//Catch exception if any
+				  System.err.println("Error: " + e.getMessage());
+				  }
+				 
+			
+			
+			JScrollPane qulook = new JScrollPane(ql);
+			q.add(qulook);
+		//	q.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			q.pack();
+			q.setSize(500, 300);
+			q.setVisible(true);
+			
+			
+		}
+		
+		
+		
 	}
 
 	public static void newSaveFile() {
