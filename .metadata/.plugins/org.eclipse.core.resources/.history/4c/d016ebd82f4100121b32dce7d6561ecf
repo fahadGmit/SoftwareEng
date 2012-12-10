@@ -1,0 +1,41 @@
+package editor;
+
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
+import javax.swing.JTabbedPane;
+import javax.swing.JToolBar;
+
+public class Gift_Gui {
+	
+	private JToolBar toolBar;
+
+	public Gift_Gui(){
+		initialize();
+	}
+	
+	private void initialize() {
+		toolBar = new JToolBar(null, JToolBar.VERTICAL);
+		
+		JFrame f = new JFrame("Gift Editor");
+	    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    JTabbedPane jtp = new JTabbedPane();
+	    jtp.addTab("Multiiple Choiese",new MultipleChoice());
+//	    jtp.addTab("Multiiple Choiese",new Multiiple());
+	    jtp.addTab("Short Answer",new Shortanswer());
+//	    jtp.addTab("Missing Word",new Missing_Word());
+//	    jtp.addTab("Short Answer", new Shortanswer());
+	    jtp.addTab("Matching", new Matching());
+	    jtp.addTab("True-False", new TrueFalseQ());
+	    jtp.addTab("Essay", new Essay());
+	    jtp.addTab("Numerical", new NumberRange());
+
+	    
+	    
+	    f.add(jtp,BorderLayout.CENTER);
+	    f.pack();
+	    f.setSize(1000, 600);
+	    f.setVisible(true);
+	}
+
+}

@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,9 +23,12 @@ import javax.swing.border.TitledBorder;
 import net.miginfocom.swing.MigLayout;
 
 public class TrueFalseQ extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField textfildeTitle;
 	private JTextPane textpanQ;
-	private JButton btnAddAnpther;
 	private char answer;
 	public static PrintWriter out;
 
@@ -65,23 +69,29 @@ public class TrueFalseQ extends JPanel {
 		final ButtonGroup ttt = new ButtonGroup();
 		ttt.add(rdbtnTrue);
 		ttt.add(rdbtnFalse);
+		
+		ImageIcon saveadd = new ImageIcon("images/saveadd.png");
+		JButton btnAddAnother = new JButton(
+				saveadd);
+		btnAddAnother.setToolTipText("Save and Add another Matching Question");
 
-		JButton btnCancelclearQuestionText = new JButton(
-				"Cancel/Clear Question Text");
-		add(btnCancelclearQuestionText, "cell 4 2,alignx right,aligny top");
+		
 
-		btnAddAnpther = new JButton("Save and Add another True/False Question"); // True
-
-		btnAddAnpther.addActionListener(new ActionListener() {
+		btnAddAnother.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				String qusetionTitle = textfildeTitle.getText();
 				String qusetionQ = textpanQ.getText();
+				
+				if (Gift_Gui.selctedFile == null) {
+					JOptionPane.showMessageDialog(null, "Create New File");
+
+				} else {
 
 				try {
 					out = new PrintWriter(new BufferedWriter(new FileWriter(
-							"ExamQ.txt", true)));
+							Gift_Gui.selctedFile, true)));
 
 					out.append("::" + qusetionTitle + "::" + qusetionQ + " {"
 							+ answer + "}" + "\n");
@@ -96,9 +106,10 @@ public class TrueFalseQ extends JPanel {
 				ttt.clearSelection();
 
 			}
+			}
 		});
 
-		add(btnAddAnpther, "cell 0 4 3 1,alignx left,aligny top");
+		add(btnAddAnother, "cell 0 4 3 1,alignx left,aligny top");
 
 		add(radioPanelGroup, "cell 2 2 2097051 1,alignx left,aligny top");
 

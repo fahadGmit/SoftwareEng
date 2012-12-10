@@ -1,0 +1,86 @@
+package editor;
+
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JToolBar;
+
+
+public class Gift_Gui {
+	
+	private JToolBar toolBar;
+	private Action newAction,openAction;
+
+	public Gift_Gui(){
+		initialize();
+	}
+	
+	private void initialize() {
+		toolBar = new JToolBar(null, JToolBar.VERTICAL);
+		
+		newAction = new NewAction();
+//		openAction = new OpenAction();
+		
+		JFrame f = new JFrame("Gift Editor");
+	    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    JTabbedPane jtp = new JTabbedPane();
+	    jtp.addTab("Multiiple Choiese",new MultipleChoice());
+//	    jtp.addTab("Multiiple Choiese",new Multiiple());
+	    jtp.addTab("Short Answer",new Shortanswer());
+//	    jtp.addTab("Missing Word",new Missing_Word());
+//	    jtp.addTab("Short Answer", new Shortanswer());
+	    jtp.addTab("Matching", new Matching());
+	    jtp.addTab("True-False", new TrueFalseQ());
+	    jtp.addTab("Essay", new Essay());
+	    jtp.addTab("Numerical", new NumberRange());
+
+	    toolBar.add(newAction);
+	    
+	    f.add(jtp,BorderLayout.CENTER);
+	    f.add(toolBar,BorderLayout.WEST);
+	    f.pack();
+	    f.setSize(1000, 600);
+	    f.setVisible(true);
+	}
+
+}
+
+class NewAction extends AbstractAction {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Object currentFile;
+
+	public NewAction() {
+		putValue(NAME, "New File");
+		putValue(SMALL_ICON, new ImageIcon(("images/new.png")));
+		putValue(SHORT_DESCRIPTION, "New Gift.txt file");
+		putValue(MNEMONIC_KEY, new Integer('N'));
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		
+		int message = 0;				
+		
+		if(currentFile!=null){
+			message = JOptionPane.showConfirmDialog(null, 
+					"Have you saved your questions before leaving?",
+					"Leaving current file",JOptionPane.YES_NO_OPTION);
+		
+			if (message == JOptionPane.YES_OPTION){
+				currentFile=null;
+//				newSaveFile("");
+			}
+		}
+//		else
+//			newSaveFile("");
+	}
+}

@@ -28,3 +28,32 @@
 1354719310291	Delete element
 1354719383610	Delete element
 1354719392255	Delete element
+1354721474471	Delete element
+1354804593310	Rename type 'Math'
+1354822597448	Delete element
+1354822904446	Rename field 'txt'
+1354967077482	Rename type 'MissingWord'
+1354971086935	Delete element
+1354973035324	Delete element
+1354973526781	Rename type 'Numerical'
+1354973568029	Rename type 'NumberRange'
+1354973757567	Rename type 'Row'
+1354973841770	Rename field 'letters'
+1354973866066	Delete element
+1354973906345	Rename type 'Row'
+1354973985360	Rename field 'letters'
+1354974142421	Delete element
+1354976259761	Rename local variable 'delAnswer'
+1354976282848	Rename local variable 'addAnswer'
+1354976545549	Rename local variable 'Remove'
+1354976632912	Rename method 'delAnswer'
+1354976672461	Rename field 'currentFile'
+1354977355285	Rename local variable 'addAnswer'
+1354977361336	Rename local variable 'delAnswer'
+1354977373524	Rename local variable 'delAnswerRow'
+1354989207240	Rename local variable 'btnNewButton'
+1354989236611	Rename local variable 'saveAnswer'
+1354989250272	Rename local variable 'saveAnswer'
+1354989265956	Rename local variable 'saveAnswer'
+1354993743840	Delete elements
+1354993940325	Delete element

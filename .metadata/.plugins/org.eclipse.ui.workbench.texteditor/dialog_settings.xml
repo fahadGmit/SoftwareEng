@@ -13,8 +13,10 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="btnAddAnpther" key="selection"/>
+		<item value="clear" key="selection"/>
 		<list key="findhistory">
+			<item value="clear"/>
+			<item value="debug"/>
 			<item value="btnAddAnpther"/>
 		</list>
 		<list key="replacehistory">

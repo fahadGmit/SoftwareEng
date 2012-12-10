@@ -1,0 +1,215 @@
+package editor;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+
+import net.miginfocom.swing.MigLayout;
+
+public class Matching extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JTextField tfTitle;
+	private JTextPane jtpQ;
+	public static PrintWriter out;
+
+	private ArrayList<CreateRow> matchinglist = new ArrayList<CreateRow>();
+	private String[] labelName = { "A", "B", "C", "D", "E", "F", "G", "H", "I",
+			"J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V",
+			"W", "X", "Y", "Z" };
+	int i = 0;
+	private JPanel panel;
+	private JScrollPane scrPanel;
+
+	public Matching() {
+
+		setLayout(new MigLayout("",
+				"[172.00][-18.00][grow]",
+				"[][grow][][]"));
+
+		JLabel lblNewLabel_4 = new JLabel("Question Title (optional)");
+		add(lblNewLabel_4, "cell 0 0,alignx right");
+		JLabel lblQ = new JLabel("Question");
+		add(lblQ, "cell 0 1,alignx right ,top");
+
+		tfTitle = new JTextField();
+		add(tfTitle, "cell 2 0,growx,span");
+		tfTitle.setColumns(10);
+		jtpQ = new JTextPane();
+		add(jtpQ, "cell 2 1,span,grow");
+
+		panel = new JPanel();
+		panel.setLayout(new MigLayout("insets 0, gap 0", "[grow]", "[]"));
+		matchinglist.add(new CreateRow(labelName[i]));
+
+		panel.add(matchinglist.get(i), "growx, wrap");
+
+		scrPanel = new JScrollPane(panel);
+		add(scrPanel, "cell 2 3, spanx, grow, wrap");
+
+		
+		ImageIcon saveadd = new ImageIcon("images/saveadd.png");
+		JButton btnAddAnother = new JButton(
+				saveadd);
+		btnAddAnother.setToolTipText("Save and Add another Matching Question");
+		add(btnAddAnother, "cell 0 13 3 1,span,right");
+
+		ImageIcon add = new ImageIcon("images/add.png");
+		JButton btnAdd = new JButton(add);
+		btnAdd.setToolTipText("Add Matching");
+		add(btnAdd, "cell 1 13 3 1,center,span");
+		btnAdd.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				buildMatch(++i);
+				scrPanel.updateUI();
+			}
+		});
+		ImageIcon remove = new ImageIcon("images/remove.png");
+		JButton btnDel = new JButton(remove);
+		btnDel.setToolTipText("Remove Last Row");
+		add(btnDel, "cell 1 13 3 1,span,right");
+
+		btnDel.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				if (i > 0) {
+					removeMatch(i--);
+					scrPanel.updateUI();
+				} else
+					JOptionPane.showMessageDialog(null,
+							"You must have at least one Match");
+			}
+		});
+
+		btnAddAnother.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (Gift_Gui.selctedFile == null) {
+					JOptionPane.showMessageDialog(null, "Create New File");
+
+				} else {
+
+					try {
+						out = new PrintWriter(new BufferedWriter(
+								new FileWriter(Gift_Gui.selctedFile, true)));
+					} catch (IOException e) {
+
+						e.printStackTrace();
+					}
+					if ((tfTitle.getText().compareTo("") == 0)
+							| (jtpQ.getText().compareTo("") == 0)
+							| (matchinglist.get(0).getTxt1().getText().compareTo("") == 0)
+							| (matchinglist.get(0).getTxt2().getText().compareTo("") == 0))
+
+						JOptionPane.showMessageDialog(null,
+								"Complete the question before save it");
+
+					else {
+
+						String content = "::" + tfTitle.getText() + "::\n"
+								+ jtpQ.getText() + "{\n";
+
+						for (int i = 0; i < matchinglist.size(); i++) {
+
+							content += "=" + matchinglist.get(i).getTxt1().getText()
+									+ " -> "
+									+ matchinglist.get(i).getTxt2().getText() + "\n";
+						}
+
+						content += "}\n\n";
+
+						out.append(content);
+
+						JOptionPane.showMessageDialog(null,
+								"Question has been saved");
+						tfTitle.setText("");
+						jtpQ.setText("");
+
+						for (int i = 0; i < matchinglist.size(); i++) {
+							matchinglist.get(i).getTxt1().setText("");
+							matchinglist.get(i).getTxt2().setText("");
+						}
+					}
+				}
+
+			}
+		});
+
+	}
+
+	protected void buildMatch(int i) {
+
+		matchinglist.add(new CreateRow(labelName[i]));
+
+		for (int x = 0; x <= i; x++) {
+
+			panel.add(matchinglist.get(x), "growx, wrap");
+		}
+	}
+
+	protected void removeMatch(int i) {
+
+		panel.remove(matchinglist.get(i));
+		matchinglist.remove(i);
+	}
+
+	private class CreateRow extends JPanel {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		private JTextField txt1;
+		private JTextField txt2;
+		private String row;
+
+		public CreateRow(String arow) {
+
+			super();
+			this.row = arow;
+
+			setLayout(new MigLayout("insets 0, gap 0", "[][grow][][grow]", "[]"));
+
+			txt1 = new JTextField();
+			txt2 = new JTextField();
+
+			add(new JLabel(row));
+			add(txt1, "growx");
+
+			add(new JLabel(row));
+			add(txt2, "growx");
+
+		}
+
+		public JTextField getTxt1() {
+			return txt1;
+		}
+
+		public JTextField getTxt2() {
+			return txt2;
+		}
+
+	}
+
+}

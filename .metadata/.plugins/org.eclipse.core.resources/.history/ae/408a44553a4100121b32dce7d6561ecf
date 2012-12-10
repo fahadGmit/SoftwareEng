@@ -1,0 +1,215 @@
+package editor;
+
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
+import javax.swing.AbstractButton;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+
+
+import net.miginfocom.swing.MigLayout;
+
+public class Matching extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JTextField tfTitle;
+	private JTextPane jtpQ;
+	private JTextField jtfAq;
+	private JTextField jtfAn;
+	private JTextField jtfBq;
+	private JTextField jtfBn;
+	private JTextField jtfCq;
+	private JTextField jtfCn;
+	public static PrintWriter out;
+
+	private ArrayList<Row> rowList = new ArrayList<Row>();
+	private String[] letters = { "A", "B", "C", "D", "E", "F", "G", "H", "I",
+			"J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V",
+			"W", "X", "Y", "Z" };
+	int i = 0;
+	private JPanel panel;
+	private JScrollPane scrPanel;
+
+	public Matching() {
+
+		setLayout(new MigLayout("debug",
+				"[172.00][-18.00][grow,fill][][][][149.00,grow,fill][]",
+				"[][grow][][]"));
+
+		JLabel lblNewLabel_4 = new JLabel("Question Title (optional)");
+		add(lblNewLabel_4, "cell 0 0,alignx right");
+		JLabel lblQ = new JLabel("Question");
+		add(lblQ, "cell 0 1,alignx right ,top");
+		
+
+		tfTitle = new JTextField();
+		add(tfTitle, "cell 2 0,growx,span");
+		tfTitle.setColumns(10);
+		jtpQ = new JTextPane();
+		add(jtpQ, "cell 2 1,span,grow");
+		
+
+		panel = new JPanel();
+		panel.setLayout(new MigLayout("insets 0, gap 0", "[grow]", "[]"));
+		rowList.add(new Row(letters[i]));
+
+		panel.add(rowList.get(i), "growx, wrap");
+
+		scrPanel = new JScrollPane(panel);
+		add(scrPanel, "cell 2 3, spanx, grow, wrap");
+
+		
+		JButton btnAddAnother = new JButton(
+				"Save and Add another Matching Question");
+		add(btnAddAnother, "cell 0 13 3 1,span");
+		
+
+		JButton btnAdd = new JButton("Add Matching");
+		add(btnAdd, "cell 0 13 3 1,span");
+		btnAdd.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				buildMatch(++i);
+				scrPanel.updateUI();
+			}
+		});
+
+		JButton btnDel = new JButton("Delet matching");
+		add(btnDel, "cell 0 13 3 1,span");
+		
+		btnDel.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				if (i > 0) {
+					removeMatch(i--);
+					scrPanel.updateUI();
+				} else
+					JOptionPane.showMessageDialog(null,
+							"You must have at least one Match");
+			}
+		});
+
+		btnAddAnother.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (Gift_Gui.currentFile == null) {
+					JOptionPane.showMessageDialog(null, "Create New File");
+
+				} else {
+					
+				out = new PrintWriter(new BufferedWriter(
+						new FileWriter(Gift_Gui.currentFile, true)));
+				if((tfTitle.getText().compareTo("")==0) 
+						| (jtpQ.getText().compareTo("")==0) 
+						| (rowList.get(0).getTxt1().getText().compareTo("")==0)
+						| (rowList.get(0).getTxt2().getText().compareTo("")==0))
+								
+							JOptionPane.showMessageDialog(null, "Complete the question before save it");
+							
+					else{
+						
+						String content = "::" + tfTitle.getText() + "::\n" + jtpQ.getText() + "{\n";
+						
+						for (int i = 0; i < rowList.size(); i++) {
+							
+							content += "=" + rowList.get(i).getTxt1().getText() + " -> " + rowList.get(i).getTxt2().getText() + "\n";
+						}
+						
+						content += "}\n\n";
+						
+						out.append(content);
+
+						JOptionPane.showMessageDialog(null, "Question has been saved");
+						tfTitle.setText("");
+						jtpQ.setText("");
+							
+						for (int i = 0; i < rowList.size(); i++) {								
+							rowList.get(i).getTxt1().setText("");
+							rowList.get(i).getTxt2().setText("");
+						}
+					}
+				}
+
+			}
+		});
+
+	}
+
+	protected void buildMatch(int i) {
+
+		rowList.add(new Row(letters[i]));
+
+		for (int x = 0; x <= i; x++) {
+
+			panel.add(rowList.get(x), "growx, wrap");
+		}
+	}
+
+	protected void removeMatch(int i) {
+
+		panel.remove(rowList.get(i));
+		rowList.remove(i);
+	}
+
+	private class Row extends JPanel {
+
+		private JTextField txt1;
+		private JTextField txt2;
+		private String row;
+
+		public Row(String arow) {
+
+			super();
+			this.row = arow;
+
+			setLayout(new MigLayout("insets 0, gap 0", "[][grow][][grow]", "[]"));
+
+			txt1 = new JTextField();
+			txt2 = new JTextField();
+
+			add(new JLabel(row));
+			add(txt1, "growx");
+
+			add(new JLabel(row));
+			add(txt2, "growx");
+
+		}
+
+		public JTextField getTxt1() {
+			return txt1;
+		}
+
+		public void setTxt1(JTextField txt1) {
+			this.txt1 = txt1;
+		}
+
+		public JTextField getTxt2() {
+			return txt2;
+		}
+
+		public void setTxt2(JTextField txt2) {
+			this.txt2 = txt2;
+		}
+
+	}
+
+}

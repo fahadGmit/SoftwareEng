@@ -2,21 +2,28 @@ package editor;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeListener;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.swing.Action;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
 import net.miginfocom.swing.MigLayout;
 
 public class Essay extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField jtfTitle;
 	private JTextPane jtfQ;
 	public static PrintWriter out;
@@ -39,17 +46,39 @@ public class Essay extends JPanel {
 
 		jtfQ = new JTextPane();
 		add(jtfQ, "cell 1 1,grow");
-
-		JButton btnNewButton = new JButton("Save and Add a other Question");
-		add(btnNewButton, "cell 1 3,alignx right");
 		
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton jbtcancel = new JButton("Clear");
+		add(jbtcancel, "cell 1 3,alignx right");
+		
+		jbtcancel.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				jtfTitle.setText(null);
+				jtfQ.setText(null);
+				
+			}
+		});
+		
+
+		ImageIcon saveadd = new ImageIcon("images/saveadd.png");
+		JButton btnAddAnother = new JButton(
+				saveadd);
+		btnAddAnother.setToolTipText("Save and Add another Matching Question");
+		add(btnAddAnother, "cell 1 3,alignx right");
+		
+		btnAddAnother.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (Gift_Gui.selctedFile == null) {
+					JOptionPane.showMessageDialog(null, "Create New File");
+
+				} else {
+				
 				try {
 					out = new PrintWriter(new BufferedWriter(new FileWriter(
-							"ExamQ.txt", true)));
+							Gift_Gui.selctedFile, true)));
 					String qusetionTitle = jtfTitle.getText();
 					String qusetionQ = jtfQ.getText();
 					
@@ -63,6 +92,7 @@ public class Essay extends JPanel {
 					e.printStackTrace();
 				}
 				
+			}
 			}
 		});
 

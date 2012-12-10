@@ -7,9 +7,6 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
@@ -54,6 +51,7 @@ public class Gift_Gui {
 		jtp.addTab("True-False", new TrueFalseQ());
 		jtp.addTab("Essay", new Essay());
 		jtp.addTab("Numerical", new Numerical());
+		jtp.addTab("Description", new Description());
 
 		toolBar.add(newAction);
 		toolBar.add(previewAction);
